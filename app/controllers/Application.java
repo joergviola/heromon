@@ -7,6 +7,7 @@ import java.util.Collection;
 import models.App;
 import models.Result;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.http.client.ClientProtocolException;
 
 import play.Logger;
@@ -54,12 +55,14 @@ public class Application extends Controller {
 	public static void query(String app, Integer days, String url, String mode)
 			throws ClientProtocolException, IOException {
 		Logger.info("Query %s %d %s %s", app, days, url, mode);
+		if (StringUtils.isEmpty(url))
+			url = null;
+		if (StringUtils.isEmpty(mode))
+			mode = "max";
 		App application = App.findById(app);
 		if (application == null)
 			error("Not registered.");
 		Collection<Result> results = application.query(days, url);
-		if (mode == null)
-			mode = "max";
 		StringBuilder b = new StringBuilder();
 		for (Result result : results) {
 			b.append(result.toString(mode));
