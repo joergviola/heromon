@@ -3,7 +3,9 @@
 # ~~~~
 
 # Home page
-POST    /register                               Application.register
+*       /register                               Application.register
+*       /snapshot/{app}                         Application.snapshot
+*       /analyse/{app}                          Application.analyse
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

@@ -2,9 +2,8 @@
 <classpath>
 	<classpathentry excluding="views/**" kind="src" path="app"/>
 	<classpathentry kind="src" path="test"/>
-	
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/Users/viola/Java/play-1.2.3/framework/play-1.2.3.jar" sourcepath="/Users/viola/Java/play-1.2.3/framework/src" />
+	<classpathentry kind="lib" path="/Users/viola/Java/play-1.2.3/framework/play-1.2.3.jar" sourcepath="/Users/viola/Java/play-1.2.3/framework/src"/>
 	<classpathentry kind="lib" path="/Users/viola/Java/play-1.2.3/framework/lib/activation-1.1.1.jar"/>
 	<classpathentry kind="lib" path="/Users/viola/Java/play-1.2.3/framework/lib/antlr-2.7.6.jar"/>
 	<classpathentry kind="lib" path="/Users/viola/Java/play-1.2.3/framework/lib/asm-all-3.3.1.jar"/>
@@ -79,6 +78,8 @@
 	<classpathentry kind="lib" path="/Users/viola/Java/play-1.2.3/framework/lib/slf4j-log4j12-1.6.1.jar"/>
 	<classpathentry kind="lib" path="/Users/viola/Java/play-1.2.3/framework/lib/snakeyaml-1.7.jar"/>
 	<classpathentry kind="lib" path="/Users/viola/Java/play-1.2.3/framework/lib/xstream-1.3.jar"/>
-	
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/httpclient-4.1.2.jar"/>
+	<classpathentry kind="lib" path="lib/httpcore-4.1.2.jar"/>
 	<classpathentry kind="output" path="eclipse/classes"/>
 </classpath>
