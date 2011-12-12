@@ -53,7 +53,7 @@ public class Application extends Controller {
 
 	public static void query(String app, Integer days, String url, String mode)
 			throws ClientProtocolException, IOException {
-		Logger.info("Query %s", app);
+		Logger.info("Query %s %d %s %s", app, days, url, mode);
 		App application = App.findById(app);
 		if (application == null)
 			error("Not registered.");
