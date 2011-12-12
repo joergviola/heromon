@@ -11,7 +11,6 @@ public class LogLine {
 	public int length;
 
 	public LogLine(String line) {
-		System.out.println(line);
 		String[] col = line.split(" ");
 		uri = col[3];
 		dyno = value(col[4]);

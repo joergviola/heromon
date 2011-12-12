@@ -1,0 +1,30 @@
+
+#headerWrapper {
+	width: 100%;
+}
+
+#header {
+	width: 700px;
+	margin: auto;	
+	border-bottom: 1px dotted #000;
+	margin-bottom: 10px;
+}
+
+#contentWrapper {
+}
+
+#content {
+	width: 700px;
+	margin: auto;	
+}
+
+#footerWrapper {
+}
+
+#footer {
+	width: 700px;
+	margin: auto;	
+	border-top: 1px dotted #000;
+	margin-top: 10px;
+}
+

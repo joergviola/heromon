@@ -1,16 +1,32 @@
-<!DOCTYPE html>
+#{extends 'page.html' /}
 
-<html>
-    <head>
-        <title>#{get 'title' /}</title>
-        <meta charset="${_response_encoding}">
-        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
+#{set 'moreStyles'}
         #{get 'moreStyles' /}
-        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
-        <script src="@{'/public/javascripts/jquery-1.5.2.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
-        #{get 'moreScripts' /}
-    </head>
-    <body>
-        #{doLayout /}
-    </body>
-</html>
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
+		<link href="http://devcenter.heroku.com/stylesheets/coderay.css?1321288178" media="screen" rel="stylesheet" type="text/css">
+#{/set}        
+
+
+#{set 'header'}
+	<div style="float: left">
+	<a href="/"><span style="font-size: 500%">heromon</span></a>
+	Simply monitoring Heroku apps
+	</div>
+	<!-- AddThis Button BEGIN -->
+	<div class="addthis_toolbox addthis_default_style" style="float: right; width:120px;">
+	<a class="addthis_button_facebook"></a>
+	<a class="addthis_button_twitter"></a>
+	<a class="addthis_button_xing"></a>
+	<a class="addthis_button_google_plusone" g:plusone:count="false"></a>
+	<a class="addthis_button_compact"></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4ed384ea616bceae"></script>
+	<!-- AddThis Button END -->
+	<div style="clear: both"></div>
+#{/set}        
+
+#{doLayout /}
+
+#{set 'footer'}
+	Use at your own risk
+#{/set}        

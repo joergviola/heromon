@@ -1,0 +1,90 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<p>
+<a href="http://www.heroku.com">Heroku</a> provides a very convient way 
+to run your Ruby or Java app. If traffic increases, you simply scale up
+your available resources.
+</p>
+
+<p>
+But how do you know when to scale up
+<span style="font-size: 300%; color: #bbb;">?</span>
+</p>
+
+<p>
+Simple. Use heromon to monitor the queue length of your app
+<span style="font-size: 300%; color: #bbb;">!</span>
+</p>
+
+<p>
+heromon is a plugin for the heroku CLI, so install it as usual:
+<pre class="CodeRay" lang="term">
+<span class="c">$</span><span class="fu"> heroku plugins:install git@github.com:joergviola/heroku-monitor.git</span>
+</pre>
+</p>
+
+<p>
+Now register your app for monitoring, a first analysis is done immediately:
+<pre class="CodeRay" lang="term">
+<span class="c">$</span><span class="fu"> heroku monitor --frequency 30</span>
+<span class="s">Starting monitoring for smooth-cloud-2087.heroku.com</span>
+<span class="s">| Date                         | URL                                | Count | Queue | Wait | Service | Length |</span>
+<span class="s">| Mon Dec 12 22:28:45 UTC 2011 | smooth-cloud-2087.heroku.com/about |     1 |     0 |    0 |      11 |   2972 |</span>
+<span class="s">| Mon Dec 12 22:28:45 UTC 2011 | smooth-cloud-2087.heroku.com/      |     1 |     0 |    0 |      87 |  80734 |</span>
+</pre>
+The frequency is optional. It counts the minutes between two measurements of your app. 
+</p>
+
+<p>
+You can query the monitored data, so that after a while, you'll see something like:
+<pre class="CodeRay" lang="term">
+<span class="c">$</span><span class="fu"> heroku monitor:query --url smooth-cloud-2087.heroku.com/</span>
+<span class="s">| Date                    | URL                           | Count | Queue | Wait | Service | Length |</span>
+<span class="s">| 2011-12-12 12:12:44.226 | smooth-cloud-2087.heroku.com/ |    91 |     0 |    0 |      46 |  13045 |</span>
+<span class="s">| 2011-12-12 15:11:39.389 | smooth-cloud-2087.heroku.com/ |   123 |     0 |    0 |     283 |  13045 |</span>
+<span class="s">| 2011-12-12 16:28:25.596 | smooth-cloud-2087.heroku.com/ |   113 |     0 |    0 |      68 |  13045 |</span>
+<span class="s">| 2011-12-12 17:19:56.919 | smooth-cloud-2087.heroku.com/ |   119 |     0 |    0 |     287 |  13045 |</span>
+<span class="s">| 2011-12-12 17:35:02.197 | smooth-cloud-2087.heroku.com/ |   120 |     0 |    0 |     287 |  13045 |</span>
+<span class="s">| 2011-12-12 17:50:04.39  | smooth-cloud-2087.heroku.com/ |   115 |     0 |    0 |     287 |  13045 |</span>
+</pre>
+</p>
+
+
+<p>
+You can also do a query of an average of all of your pages:
+<pre class="CodeRay" lang="term">
+<span class="c">$</span><span class="fu"> heroku monitor:query --url all --mode avg</span>
+</pre>
+</p>
+
+<p>
+Or the maximum of the last 5 days of every page:
+<pre class="CodeRay" lang="term">
+<span class="c">$</span><span class="fu"> heroku monitor:query --days 5 --mode max</span>
+</pre>
+Play around, you'll get it.
+</p>
+
+<p>
+If you need current statistics, you always can analyse your app - the generated data is stored:
+<pre class="CodeRay" lang="term">
+<span class="c">$</span><span class="fu"> heroku monitor:analyse</span>
+<span class="s">| Date                         | URL                                | Count | Queue | Wait | Service | Length |</span>
+<span class="s">| Mon Dec 12 22:28:45 UTC 2011 | smooth-cloud-2087.heroku.com/about |     1 |     0 |    0 |      11 |   2972 |</span>
+<span class="s">| Mon Dec 12 22:28:45 UTC 2011 | smooth-cloud-2087.heroku.com/      |     1 |     0 |    0 |      87 |  80734 |</span>
+</pre>
+</p>
+
+
+<p>
+If you're brave, you also can take a look at a snapshot of
+the routergrid logs themselves:
+<pre class="CodeRay" lang="term">
+<span class="c">$</span><span class="fu"> heroku monitor:snapshot</span>
+<span class="s">2011-12-12T21:58:57+00:00 heroku[router]: GET smooth-cloud-2087.heroku.com/ dyno=web.1 queue=0 wait=0ms service=84ms status=200 bytes=13045</span>
+<span class="s">2011-12-12T21:58:58+00:00 heroku[router]: GET smooth-cloud-2087.heroku.com/public/stylesheets/main.css dyno=web.1 queue=0 wait=0ms service=9ms status=200 bytes=16969</span>
+<span class="s">2011-12-12T21:58:58+00:00 heroku[router]: GET smooth-cloud-2087.heroku.com/public/stylesheets/carousel/skin.css dyno=web.1 queue=0 wait=0ms service=8ms status=200 bytes=4598</span>
+...
+</pre>
+</p>

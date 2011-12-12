@@ -1,0 +1,27 @@
+html, body {
+	font-family: "Times New Roman", serif;
+}
+
+a {
+	font-style: italic;
+	color: #000;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+#content {
+	font-size: 120%;
+}
+
+pre {
+    background: url("http://devcenter.heroku.com/images/dev-center/wikistyle/pre_code_background.png") repeat scroll 0 0 #434E56;
+    border: 1px solid #3F464C;
+    border-radius: 3px 3px 3px 3px;
+    line-height: 18px;
+    margin: 0 0 22px;
+    overflow-y: auto;
+    padding: 12px;
+}

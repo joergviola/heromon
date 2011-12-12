@@ -15,6 +15,11 @@ import play.mvc.Controller;
 
 public class Application extends Controller {
 
+	public static void index() {
+		long apps = App.count();
+		render(apps);
+	}
+
 	public static void register(String app, String apikey, int frequency)
 			throws ClientProtocolException, IOException {
 		Logger.info("Register %s XXX %d", app, frequency);
@@ -23,8 +28,9 @@ public class Application extends Controller {
 			error("Already registered.");
 		application = new App(app, apikey, frequency);
 		application.save();
-		InputStream logs = application.snapshot();
-		renderBinary(logs);
+		Collection<Result> results = application.analyse();
+		ResultBuilder b = new ResultBuilder("max");
+		renderText(b.toString(results));
 	}
 
 	public static void snapshot(String app) throws ClientProtocolException,

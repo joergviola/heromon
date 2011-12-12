@@ -3,6 +3,7 @@
 # ~~~~
 
 # Home page
+GET		/										Application.index
 *       /register                               Application.register
 *       /snapshot/{app}                         Application.snapshot
 *       /analyse/{app}                          Application.analyse
