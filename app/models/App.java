@@ -165,7 +165,7 @@ public class App extends GenericModel {
 		long now = System.currentTimeMillis();
 		for (App app : all) {
 			if (app.lastMeasured == null
-					|| app.lastMeasured.getTime() - now > app.frequency * 60 * 1000L)
+					|| now - app.lastMeasured.getTime() > app.frequency * 60 * 1000L)
 				result.add(app);
 		}
 		return result;
