@@ -44,12 +44,8 @@ public class Application extends Controller {
 		if (application == null)
 			error("Not registered.");
 		Collection<Result> results = application.analyse();
-		StringBuilder b = new StringBuilder();
-		for (Result result : results) {
-			b.append(result.toString("max"));
-			b.append("\n");
-		}
-		renderText(b.toString());
+		ResultBuilder b = new ResultBuilder("max");
+		renderText(b.toString(results));
 	}
 
 	public static void query(String app, Integer days, String url, String mode)
@@ -63,11 +59,7 @@ public class Application extends Controller {
 		if (application == null)
 			error("Not registered.");
 		Collection<Result> results = application.query(days, url);
-		StringBuilder b = new StringBuilder();
-		for (Result result : results) {
-			b.append(result.toString(mode));
-			b.append("\n");
-		}
-		renderText(b.toString());
+		ResultBuilder b = new ResultBuilder(mode);
+		renderText(b.toString(results));
 	}
 }
