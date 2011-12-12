@@ -22,7 +22,7 @@ public class Application extends Controller {
 			error("Already registered.");
 		application = new App(app, apikey, frequency);
 		application.save();
-		InputStream logs = Monitor.snapshot(application);
+		InputStream logs = application.snapshot();
 		renderBinary(logs);
 	}
 
@@ -32,7 +32,7 @@ public class Application extends Controller {
 		App application = App.findById(app);
 		if (application == null)
 			error("Not registered.");
-		InputStream logs = Monitor.snapshot(application);
+		InputStream logs = application.snapshot();
 		renderBinary(logs);
 	}
 
@@ -42,10 +42,27 @@ public class Application extends Controller {
 		App application = App.findById(app);
 		if (application == null)
 			error("Not registered.");
-		Collection<Result> results = Monitor.analyse(application);
+		Collection<Result> results = application.analyse();
 		StringBuilder b = new StringBuilder();
 		for (Result result : results) {
-			b.append(result.toString());
+			b.append(result.toString("max"));
+			b.append("\n");
+		}
+		renderText(b.toString());
+	}
+
+	public static void query(String app, Integer days, String url, String mode)
+			throws ClientProtocolException, IOException {
+		Logger.info("Query %s", app);
+		App application = App.findById(app);
+		if (application == null)
+			error("Not registered.");
+		Collection<Result> results = application.query(days, url);
+		if (mode == null)
+			mode = "max";
+		StringBuilder b = new StringBuilder();
+		for (Result result : results) {
+			b.append(result.toString(mode));
 			b.append("\n");
 		}
 		renderText(b.toString());

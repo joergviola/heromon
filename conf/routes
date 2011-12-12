@@ -6,6 +6,7 @@
 *       /register                               Application.register
 *       /snapshot/{app}                         Application.snapshot
 *       /analyse/{app}                          Application.analyse
+*       /query/{app}                          	Application.query
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

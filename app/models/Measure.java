@@ -18,7 +18,7 @@ public class Measure extends Model {
 
 	public Date date;
 
-	@OneToMany
+	@OneToMany(mappedBy = "measure")
 	@OrderBy("uri")
 	public List<Result> results;
 
