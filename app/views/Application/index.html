@@ -88,3 +88,18 @@ the routergrid logs themselves:
 ...
 </pre>
 </p>
+
+<p>
+You can change the monitoring frequency:
+<pre class="CodeRay" lang="term">
+<span class="c">$</span><span class="fu"> heroku monitor:update --frequency 180</span>
+</pre>
+</p>
+
+<p>
+If you know enough, you can opt out.<br>
+BEWARE! This is an undoable action, all your results are deleted. 
+<pre class="CodeRay" lang="term">
+<span class="c">$</span><span class="fu"> heroku monitor:remove</span>
+</pre>
+</p>
