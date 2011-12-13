@@ -7,6 +7,7 @@ import play.Logger;
 import play.jobs.Every;
 import play.jobs.Job;
 import play.jobs.OnApplicationStart;
+import controllers.Ping;
 
 @OnApplicationStart
 @Every("15min")
@@ -20,5 +21,6 @@ public class Cron extends Job {
 		}
 		long ms = System.currentTimeMillis() - start;
 		Logger.info("Monitored %d app in %d ms", apps.size(), ms);
+		Ping.ping();
 	}
 }
