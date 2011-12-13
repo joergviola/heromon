@@ -15,8 +15,11 @@ import java.util.List;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
@@ -44,6 +47,10 @@ public class App extends GenericModel {
 	public int frequency;
 
 	public Date lastMeasured;
+
+	@OneToMany(mappedBy = "app", cascade = CascadeType.REMOVE)
+	@OrderBy("date desc")
+	public List<Measure> measures;
 
 	public App(String name, String apikey, int frequency) {
 		this.name = name;
@@ -152,10 +159,11 @@ public class App extends GenericModel {
 		Date date = new Date(System.currentTimeMillis() - days * 24 * 60 * 60
 				* 1000L);
 		if (url == null) {
-			return Result.find("app=? and date>?", this, date).fetch();
+			return Result.find("app=? and date>? order by date desc", this,
+					date).fetch();
 		} else {
-			return Result.find("app=? and date>? and uri=?", this, date, url)
-					.fetch();
+			return Result.find("app=? and date>? and uri=? order by date desc",
+					this, date, url).fetch();
 		}
 	}
 
