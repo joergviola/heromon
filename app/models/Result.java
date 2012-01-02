@@ -67,13 +67,15 @@ public class Result extends GenericModel {
 			b.append(" ");
 			b.append(maxLength);
 		} else {
-			b.append(queue / count);
-			b.append(" ");
-			b.append(wait / count);
-			b.append(" ");
-			b.append(service / count);
-			b.append(" ");
-			b.append(length / count);
+			if (count > 0) {
+				b.append(queue / count);
+				b.append(" ");
+				b.append(wait / count);
+				b.append(" ");
+				b.append(service / count);
+				b.append(" ");
+				b.append(length / count);
+			}
 		}
 		return b.toString();
 	}
