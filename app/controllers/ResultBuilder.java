@@ -111,10 +111,14 @@ public class ResultBuilder {
 				visitor.accept(result.date, uri, result.count, result.maxQueue,
 						result.maxWait, result.maxService, result.maxLength);
 			} else {
-				visitor.accept(result.date, uri, result.count, result.queue
-						/ result.count, result.wait / result.count,
-						result.service / result.count, result.length
-								/ result.count);
+				if (result.count > 0) {
+					visitor.accept(result.date, uri, result.count, result.queue
+							/ result.count, result.wait / result.count,
+							result.service / result.count, result.length
+									/ result.count);
+				} else {
+					visitor.accept(result.date, uri, result.count, 0, 0, 0, 0);
+				}
 			}
 		}
 	}
